@@ -4,12 +4,12 @@ FROM node:20-slim AS build
 WORKDIR /app
 
 # Copy package.json and package-lock.json
-COPY package.json ./
+COPY package.json package-lock.json ./
 
 # I am not creating a package-lock.json, so I will run npm install
 # and it will be generated. In a real world scenario, it should be
 # part of the repository.
-RUN npm install
+RUN npm ci
 
 # Copy the rest of the application files
 COPY . .
